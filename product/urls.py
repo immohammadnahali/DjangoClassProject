@@ -1,0 +1,22 @@
+# URL PRODUCT
+from . import views
+from django.urls import path
+
+urlpatterns = [
+    path("", views.index),
+    path("blog/", views.blog),
+    path("article/", views.article),
+    path("category/", views.category),
+    path("contact_us/", views.contact_us),
+    path("error404/", views.error404),
+    path("forget_password/", views.forget_password),
+    path("login/", views.login),
+    path("panel_user/", views.panel_user),
+    path("search/", views.search),
+    path("sign_up/", views.sign_up),
+    path("teach/", views.teach),
+    path("Futurecoursess/<str:slug>", views.Fc,name="Fc"),
+    path("product/<str:slug>", views.dkp,name="dkp"),
+    path("article/art-<str:slug>", views.art, name="art"),
+
+]

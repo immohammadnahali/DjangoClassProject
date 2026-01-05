@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <ul class="breadcrumb bg-white">
+        <li class="breadcrumb-item"><a href="/" class="font-12 vazir">صفحه اصلی</a></li>
+        <li class="breadcrumb-item active font-12 vazir">{{ data.name }}</li>
+    </ul>
+</div>
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+                    <h3 class="card-title vazir mb-3">{{ data.name }}</h3>
+
+                    <p class="card-text vazir font-14 text-justify">
+                        {{ data.description }}
+                    </p>
+
+                    <ul class="list-group list-group-flush font-13 mt-3">
+                        <li class="list-group-item">مدرس: {{ data.teacher }}</li>
+                        <li class="list-group-item">تاریخ برگزاری: {{ data.date }}</li>
+                    </ul>
+                </div>
+
+                <div class="card-footer bg-white text-center">
+                    <span class="badge badge-warning p-2">به زودی</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
