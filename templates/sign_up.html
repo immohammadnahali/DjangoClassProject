@@ -34,6 +34,8 @@
                                     </div>
 {#                                    <input  >#}
                                         {{ form.name }}
+                                            <div class="alert-danger">{{ form.name.errors }}</div>
+
                                 </div>
                             </div>
                 
@@ -45,6 +47,8 @@
                                     </div>
 {#                                    <input name="lastname" type="text" class="form-control" placeholder="نام خانوادگی خود را وارد کنید ">#}
                                 {{ form.last_name }}
+                                    <div class="alert-danger">{{ form.last_name.errors }}</div>
+
                                 </div>
                             </div>
                 
@@ -68,6 +72,8 @@
                                     </div>
 {#                                    <input name="username" type="text" class="form-control" placeholder="نام کاربری خود را وارد کنید ">#}
                                 {{ form.username }}
+                                    <div class="alert-danger">{{ form.username.errors }}</div>
+
                                 </div>
                             </div>
                 
