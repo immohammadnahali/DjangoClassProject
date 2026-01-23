@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product.apps.ProductConfig',
     'blog.apps.BlogConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -52,12 +53,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ISO.urls'
-
+AUTH_USER_MODEL = "account.new_user"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

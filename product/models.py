@@ -1,6 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from slugify import slugify, SLUG_OK
 
-# Create your models here.
 
 class teach(models.Model):
     fullname = models.CharField(max_length=100)
@@ -12,7 +13,6 @@ class teach(models.Model):
     university = models.CharField(max_length=100)
     url = models.URLField()
     comment = models.TextField()
-
 
     CATEGORY_CHOICES = [
         ('chemistry', 'شیمی'),
@@ -28,9 +28,11 @@ class teach(models.Model):
 
     def __str__(self):
         return self.fullname
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.fullname)
         super().save(*args, **kwargs)
+
 
 class product(models.Model):
     teach = models.ForeignKey(teach, on_delete=models.PROTECT)
@@ -64,10 +66,11 @@ class product(models.Model):
         verbose_name='سطح دوره'
     )
 
-
     slug = models.SlugField(max_length=100, null=True, blank=True)
+
     def __str__(self):
         return self.name
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -77,23 +80,24 @@ class Futurecoursess(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
-    teacher=models.CharField(max_length=100)
+    teacher = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, null=True, blank=True)
+
     def __str__(self):
         return self.name
-    def save(self, *args, **kwargs):
-        self.slug =slugify(self.name)
-        super().save(*args, **kwargs)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class bestteachers(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField()
+
     def __str__(self):
         return self.name
-from slugify import slugify, SLUG_OK
 
 
 class article(models.Model):
@@ -101,48 +105,44 @@ class article(models.Model):
     description = models.TextField()
     image = models.ImageField()
     slug = models.SlugField(max_length=100, null=True, blank=True)
+
     def __str__(self):
         return self.name
+
     def save(self, *args, **kwargs):
-        self.slug =slugify(self.name)
+        self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-
-
-class users(models.Model):
-    name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
-    username = models.CharField(max_length=100)
-    def __str__(self):
-        return f"{self.name} {self.last_name}"
 
 
 class new_login(models.Model):
     username = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+
     def __str__(self):
         return self.username
-
-
 
 
 class test_teacher(models.Model):
     name = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
+
     def __str__(self):
         return self.name
+
+
 class students(models.Model):
     name = models.CharField(max_length=100)
     teacher = models.ManyToManyField(test_teacher)
+
     def __str__(self):
         return self.name
+
 
 class test_info_teacher(models.Model):
     teacher = models.OneToOneField(test_teacher, on_delete=models.CASCADE)
     # teach=models.OneToOneField(teach, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+
     def __str__(self):
         return str(self.teacher)
-

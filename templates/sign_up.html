@@ -56,6 +56,7 @@
                                     </div>
 {#                                    <input name="email" type="email" class="form-control" placeholder=" ایمیل خود را وارد کنید">#}
                                 {{ form.email }}
+                                    <div class="alert-danger">{{ form.email.errors }}</div>
                                 </div>
                             </div>
                 
@@ -78,6 +79,7 @@
                                     </div>
 {#                                    <input name="password" type="password" class="form-control" placeholder="رمز عبور خود را وارد کنید">#}
                                 {{ form.password }}
+                                    <div class="alert-danger">{{ form.password.errors }}</div>
                                 </div>
                             </div>
                             

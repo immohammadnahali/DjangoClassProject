@@ -13,10 +13,9 @@ urlpatterns = [
     path("login/", views.login),
     path("panel_user/", views.panel_user),
     path("search/", views.search),
-    path("sign_up/", views.sign_up),
     path("teach/", views.teach),
-    path("Futurecoursess/<str:slug>", views.Fc,name="Fc"),
-    path("product/<str:slug>", views.dkp,name="dkp"),
+    path("Futurecoursess/<str:slug>", views.Fc, name="Fc"),
+    path("product/<str:slug>", views.dkp, name="dkp"),
     path("article/art-<str:slug>", views.art, name="art"),
 
 ]
