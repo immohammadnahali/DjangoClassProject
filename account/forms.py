@@ -12,3 +12,10 @@ class sign_up(forms.Form):
         "class": "form-control", "placeholder": "نام کاربری خود را وارد کنید", }))
     password = forms.CharField(widget=forms.TextInput(attrs={
         "class": "form-control", "placeholder": "رمز عبور خود را وارد کنید", }))
+
+
+class login(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "form-control", "placeholder": "نام کاربری خود را وارد کنید", }))
+    password = forms.CharField(widget=forms.TextInput(attrs={
+        "class": "form-control", "placeholder": "رمز عبور خود را وارد کنید", }))
