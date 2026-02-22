@@ -6,6 +6,7 @@ from django.views import View
 import re
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 
 class sign_up(View):
@@ -84,7 +85,7 @@ class sign_up(View):
         user.set_password(password)
         user.save()
 
-        return redirect("/login")
+        return redirect("/account/login/")
 
     def get(self, request):
         new_form = forms.sign_up()
@@ -123,6 +124,11 @@ class login(View):
         return render(request, 'login.html', {"form": new_form})
 
 
+@login_required(login_url="/account/login/")
+def panel_user(request):
+    return render(request, 'panel_user.html', {
+        "user": request.user
+    })
 
 def logout(request):
     auth_logout(request)

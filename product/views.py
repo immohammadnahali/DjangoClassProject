@@ -44,17 +44,6 @@ def forget_password(request):
     return render(request, 'forget_password.html')
 
 
-def login(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        new_login = models.new_login(password=password, username=username)
-        new_login.save()
-        return HttpResponse("saved!!!!!!!!!!!")
-    else:
-        return render(request, 'login.html')
-
-
 @login_required(login_url="/account/login")
 def panel_user(request):
     return render(request, 'panel_user.html', {

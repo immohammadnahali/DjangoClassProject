@@ -10,8 +10,6 @@ urlpatterns = [
     path("contact_us/", views.contact_us),
     path("error404/", views.error404),
     path("forget_password/", views.forget_password),
-    path("login/", views.login),
-    path("panel_user/", views.panel_user),
     path("search/", views.search),
     path("teach/", views.teach),
     path("Futurecoursess/<str:slug>", views.Fc, name="Fc"),
