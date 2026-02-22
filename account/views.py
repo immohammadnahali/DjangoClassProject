@@ -5,6 +5,9 @@ from . import forms
 from django.views import View
 import re
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+
+
 class sign_up(View):
     def post(self, request):
         new_form = forms.sign_up(request.POST)
@@ -86,22 +89,31 @@ class sign_up(View):
     def get(self, request):
         new_form = forms.sign_up()
         return render(request, 'sign_up.html', {"form": new_form})
+
+
 class login(View):
     def post(self, request):
         new_form = forms.login(request.POST)
         if new_form.is_valid():
             username_form = new_form.cleaned_data['username']
             password_form = new_form.cleaned_data['password']
-            check_user=models.new_user.objects.filter(username=username_form).first()
+            check_user = models.new_user.objects.filter(username=username_form).first()
+
             if check_user:
                 if check_user.check_password(password_form):
+
                     auth_login(request, check_user)
-                    return redirect("/")
+
+                    # ✅ Remember Me Logic
+                    if not request.POST.get('remember_me'):
+                        request.session.set_expiry(0)
+                    else:
+                        request.session.set_expiry(1209600)
+
+                    return redirect("/panel_user/")
                 else:
-                    new_form.add_error("username", " پسورد وجود ندارد!!!!.")
                     return HttpResponse("Not Valid pass !!!!!!!!!")
             else:
-                new_form.add_error("username", " نام کاربری وجود ندارد!!!!.")
                 return HttpResponse("Not Valid user !!!!!!!!!")
         else:
             return HttpResponse("Not Valid Form !!!!!!!!!")
@@ -110,6 +122,11 @@ class login(View):
         new_form = forms.login()
         return render(request, 'login.html', {"form": new_form})
 
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect("/")
 # class sign_up(View):
 #     def post(self, request):
 #         new_form = forms.sign_up(request.POST)

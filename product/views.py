@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from . import models
 from . import forms
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -54,8 +55,11 @@ def login(request):
         return render(request, 'login.html')
 
 
+@login_required(login_url="/account/login")
 def panel_user(request):
-    return render(request, 'panel_user.html')
+    return render(request, 'panel_user.html', {
+        "user": request.user
+    })
 
 
 def search(request):
@@ -64,21 +68,30 @@ def search(request):
 
 def teach(request):
     if request.method == "POST":
-        fullname = request.POST['fullname']
-        phonenamber = request.POST['phonenamber']
-        email = request.POST['email']
-        course_title = request.POST['course_title']
-        url = request.POST['url']
-        category = request.POST['category']
-        comment = request.POST['comment']
-        teach = models.teach(
-            fullname=fullname, phone=phonenamber, email=email, course_title=course_title,
-            url=url, category=category, comment=comment)
-        teach.save()
+        fullname = request.POST.get('fullname')
+        phone = request.POST.get('phonenamber')
+        email = request.POST.get('email')
+        title = request.POST.get('course_title')
+        url = request.POST.get('url')
+        category = request.POST.get('category')
+        comment = request.POST.get('comment')
+
+
+        models.teach.objects.create(
+            fullname=fullname,
+            phone=phone,
+            email=email,
+            title=title,
+            url=url,
+            category=category,
+            comment=comment,
+            image=""
+        )
+
         return HttpResponse("saved!!!!!!!!!!!")
 
-    else:
-        return render(request, 'teach.html')
+    return render(request, 'teach.html')
+
 
 
 def dkp(request, slug):

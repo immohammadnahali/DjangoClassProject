@@ -4,13 +4,14 @@ from slugify import slugify, SLUG_OK
 
 
 class teach(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
     fullname = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
     email = models.EmailField()
     phone = models.CharField(max_length=100)
-    educational_stage = models.CharField(max_length=100)
-    field_of_study = models.CharField(max_length=100)
-    university = models.CharField(max_length=100)
+    educational_stage = models.CharField(max_length=100, null=True, blank=True)
+    field_of_study = models.CharField(max_length=100, null=True, blank=True)
+    university = models.CharField(max_length=100, null=True, blank=True)
     url = models.URLField()
     comment = models.TextField()
 
@@ -19,6 +20,7 @@ class teach(models.Model):
         ('graphic', 'گرافیک'),
         ('sport', 'تربیت بدنی'),
         ('programming', 'برنامه نویسی'),
+        ('programming', 'زبان انگلیسی'),
     ]
     category = models.CharField(
         max_length=20,
