@@ -111,7 +111,7 @@ class login(View):
                     else:
                         request.session.set_expiry(1209600)
 
-                    return redirect("/panel_user/")
+                    return redirect("panel_user")
                 else:
                     return HttpResponse("Not Valid pass !!!!!!!!!")
             else:
@@ -130,9 +130,15 @@ def panel_user(request):
         "user": request.user
     })
 
+
 def logout(request):
     auth_logout(request)
     return redirect("/")
+
+
+def forget_password(request):
+    return render(request, 'forget_password.html')
+
 # class sign_up(View):
 #     def post(self, request):
 #         new_form = forms.sign_up(request.POST)

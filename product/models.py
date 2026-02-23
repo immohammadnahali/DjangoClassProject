@@ -140,3 +140,13 @@ class test_info_teacher(models.Model):
 
     def __str__(self):
         return str(self.teacher)
+
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

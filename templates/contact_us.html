@@ -9,7 +9,7 @@
 
     <div class="container">
         <ul class="breadcrumb bg-white mt-4">
-            <li class="breadcrumb-item"><a href="#" class="font-12 vazir">صفحه اصلی</a></li>
+            <li class="breadcrumb-item"><a href="/" class="font-12 vazir">صفحه اصلی</a></li>
             <li class="breadcrumb-item"><a href="#" class="pr-2 font-12 vazir">تماس با ما</a></li>
         </ul>
     </div>
@@ -26,17 +26,17 @@
         <div class="row">
             <div class="col-sm-4 text-center info">
                 <i class="fa fa-phone"></i>
-                <p class="mt-3 font-14">021-12345678</p>   
+                <p class="mt-3 font-14">024-33035450-5</p>   
             </div>
 
             <div class="col-sm-4 text-center info">
                 <i class="fas fa-envelope"></i>
-                <p class="mt-3 font-14">info@sitename.com</p>
+                <p class="mt-3 font-14">sec.zn@acecr.ac.ir</p>
             </div>
 
             <div class="col-sm-4 text-center info">
                 <i class="fas fa-map-marker-alt"></i>
-                <p class="mt-3 font-14" >ایران , تهران , زعفرانیه , ساختمان مهر</p>   
+                <p class="mt-3 font-14" >زنجان بلوار ملاصدرا، جنب میدان شورا، مجتمع جهاددانشگاهی</p>   
             </div>
         </div>
     </div>
@@ -46,22 +46,36 @@
 
             <div class="col-md-6 contact bg-white py-3 shadow-sm mb-3">
                 <h6 class="text-info mr-2">ارتباط با ما</h6>
-                <p class="text-justify vazir font-14 contact">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده 
-                    از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
+                <p class="text-justify vazir font-14 contact"> ما از شنیدن نظرات و پیشنهادات شما خوشحال می شویم. با ما تماس بگیرید و تجربه خود را با ما به اشتراک بگذارید.</p>
 
-                <form action="" method="">
+                <form method="POST">
+                    {% csrf_token %}
+                
+                    {% if success %}
+                        <div class="alert alert-success">
+                            پیام شما با موفقیت ارسال شد.
+                        </div>
+                    {% endif %}
+                
                     <div class="row">
                         <div class="col form-group">
-                            <input type="text" id="name" class="form-control rounded-pill" placeholder="نام خود را وارد کنید ...">
+                            {{ form.name }}
+                            {{ form.name.errors }}
                         </div>
                         <div class="col form-group">
-                            <input type="email" id="email" class="form-control rounded-pill" placeholder="ایمیل خود را وارد کنید ...">
+                            {{ form.email }}
+                            {{ form.email.errors }}
                         </div>
                     </div>
+                
                     <div class="form-group">
-                        <textarea  cols="30" rows="10" class="form-control w-100 rounded-lg p-3" placeholder="پیام خود را وارد کنید ..."></textarea>
+                        {{ form.message }}
+                        {{ form.message.errors }}
                     </div>
-                    <button type="submit" class="btn btn-primary rounded-pill mr-auto d-block font-13">ارسال</button>
+                
+                    <button type="submit" class="btn btn-primary rounded-pill mr-auto d-block font-13">
+                        ارسال
+                    </button>
                 </form>
 
             </div>

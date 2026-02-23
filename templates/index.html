@@ -140,13 +140,13 @@
                     <li class="nav-item ml-3 dropdown custom-nav-item"><a href="#" class="nav-link  dropdown-toggle" data-toggle="dropdown">صفحات</a>
 
                         <div class="dropdown-menu  custom-dropdown-menu dropdown-menu-right font-13 text-right">
-                            <a href="/panel_user/" class="dropdown-item border-bottom py-2">پنل کاربری</a>
+                            <a href="{% url 'panel_user' %}" class="dropdown-item border-bottom py-2">پنل کاربری</a>
                             <a href="/search/" class="dropdown-item border-bottom py-2">جستجو</a>
                             <a href="/error404/" class="dropdown-item py-2">Error 404</a>
                         </div>
 
                     </li>
-                    <li class="nav-item ml-3 custom-nav-item"><a href="/blog/" class="nav-link">بلاگ</a></li>
+                    <li class="nav-item ml-3 custom-nav-item"><a href="{% url 'blog' %}" class="nav-link">بلاگ</a></li>
                     <li class="nav-item ml-3 custom-nav-item"><a href="/contact_us/" class="nav-link">تماس باما</a></li>
                 </ul>
             </div>
@@ -493,14 +493,11 @@
 
                 <div class="col-md-4">
                     <img src='{% static "images/logo4.jpg" %}' alt="" class="img-fluid">
-                    <p class="text-justify font-14 vazir mb-4">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                        استفاده از طراحان گرافیک است.
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر آنچنان که لازم است. 
+                    <p class="text-justify font-14 vazir mb-4">اولین سایت ساخته شده توسط جنگو در جهان و پیشگام در صنعت هسته ای روباتیک هوش مصنوعی و ورزش قهرمانی و پهلوانی
                     </p>
-                    <p class="font-14"><i class="fas fa-map-marker-alt text-muted ml-2"></i> ایران , تهران , زعفرانیه , ساختمان مهر</p>
-                    <p class="font-14"><i class="fas fa-envelope text-muted ml-2"></i> info@sitename.com</p>
-                    <p class="font-14"><i class="fa fa-phone text-muted ml-2"></i>021-12345678</p>
+                    <p class="font-14"><i class="fas fa-map-marker-alt text-muted ml-2"></i> زنجان بلوار ملاصدرا، جنب میدان شورا، مجتمع جهاددانشگاهی</p>
+                    <p class="font-14"><i class="fas fa-envelope text-muted ml-2"></i> sec.zn@acecr.ac.ir</p>
+                    <p class="font-14"><i class="fa fa-phone text-muted ml-2"></i>024-33035450-5</p>
                 </div>
 
                 <div class="col-md-2 text-center footer-links">
@@ -516,7 +513,7 @@
                 <div class="col-md-2 text-center footer-links">
                     <span class="mt-5 mb-3 d-block font-14">لینک های مفید</span>
                     <ul class="list-unstyled">
-                        <li class="my-3"><a href="/panel_user/">حساب کاربری</a></li>
+                        <li class="my-3"><a href="{% url 'panel_user' %}">حساب کاربری</a></li>
                         <li class="my-3"><a href="#">بازپرداخت</a></li>
                         <li class="my-3"><a href="#">تخفیف</a></li>
                         <li class="my-3"><a href="#">رهگیری سفارش</a></li>
@@ -552,7 +549,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <hr>
-                    <p class="text-muted font-14">© 1399 کلیه حقوق این سایت متعلق به ایزی لرن است</p>
+                    <p class="text-muted font-14">© 1404 کلیه حقوق این سایت متعلق به محمد نهالی است</p>
                 </div>
             </div>
 

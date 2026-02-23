@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from . import models
 from . import forms
 from django.views import View
-from django.contrib.auth.decorators import login_required
+from .forms import ContactForm
 
 
 def index(request):
@@ -20,10 +20,6 @@ def index(request):
         'teach': teach})
 
 
-def blog(request):
-    return render(request, 'blog.html')
-
-
 def article(request):
     return render(request, 'article.html')
 
@@ -33,22 +29,24 @@ def category(request):
 
 
 def contact_us(request):
-    return render(request, 'contact_us.html')
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "contact_us.html", {
+                "form": ContactForm(),
+                "success": True
+            })
+    else:
+        form = ContactForm()
+
+    return render(request, "contact_us.html", {
+        "form": form
+    })
 
 
 def error404(request):
     return render(request, 'error404.html')
-
-
-def forget_password(request):
-    return render(request, 'forget_password.html')
-
-
-@login_required(login_url="/account/login")
-def panel_user(request):
-    return render(request, 'panel_user.html', {
-        "user": request.user
-    })
 
 
 def search(request):
@@ -80,7 +78,6 @@ def teach(request):
         return HttpResponse("saved!!!!!!!!!!!")
 
     return render(request, 'teach.html')
-
 
 
 def dkp(request, slug):
